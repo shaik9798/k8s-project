@@ -27,9 +27,9 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 975049893192.dkr.ecr.us-west-2.amazonaws.com
-                    docker tag backend:latest 975049893192.dkr.ecr.us-west-2.amazonaws.com/backend:${BUILD_NUMBER}
-                    docker push 975049893192.dkr.ecr.us-west-2.amazonaws.com/backend:${BUILD_NUMBER}
+                    aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 317775606280.dkr.ecr.us-west-2.amazonaws.com
+                    docker tag backend:latest 317775606280.dkr.ecr.us-west-2.amazonaws.com/backend:${BUILD_NUMBER}
+                    docker push 317775606280.dkr.ecr.us-west-2.amazonaws.com/backend:${BUILD_NUMBER}
                     '''
                 }
             }
@@ -47,7 +47,7 @@ pipeline {
                             git config user.name "shaik9798"
                             BUILD_NUMBER=${BUILD_NUMBER}
                             echo $BUILD_NUMBER
-                            sed -i "s#image:.*#image: 975049893192.dkr.ecr.us-west-2.amazonaws.com/backend:$BUILD_NUMBER#g" backend-deployment.yaml
+                            sed -i "s#image:.*#image: 317775606280.dkr.ecr.us-west-2.amazonaws.com/backend:$BUILD_NUMBER#g" backend-deployment.yaml
                             git add .
                             git commit -m "Update deployment Image to version \${BUILD_NUMBER}"
                             git push https://${git_token}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
